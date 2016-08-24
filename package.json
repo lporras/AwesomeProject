@@ -6,6 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "giphy-api": "^1.2.1",
+    "querystring": "^0.2.0",
     "react": "15.2.1",
     "react-native": "0.31.0"
   }

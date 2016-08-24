@@ -1,50 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict';
+var giphy = require('giphy-api')();
+var React = require('react');
 
-import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
+  Alert,
   Text,
+  Image,
+  TextInput,
+  StyleSheet,
   View
 } from 'react-native';
 
-class AwesomeProject extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          Hello world
-        </Text>
-
-      </View>
-    );
+var styles = StyleSheet.create({
+  text: {
+    color: 'black',
+    backgroundColor: 'white',
+    fontSize: 30
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+var AwesomeProject = React.createClass({
+  componentDidMount: function () {
+    var query = "pokemon";
+    //Alert.alert('Hola', 'Jano');
+    /*giphy.search(query, function (err, res) {
+      if (err) console.warn(err);
+      if (res && res.data && res.data.length > 0) {
+        let pic =  res.data[0].images.original.url;
+        this.setState({
+          pic: pic
+        });
+      }
+    }.bind(this));*/
+  },
+  getInitialState: function () {
+    let pic = 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+    return {
+      pic: pic
+    }
+  },
+  render: function() {
+    return (
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Text style={styles.text}>Hola Mundo</Text>
+        <Image source={{uri: this.state.pic}} style={{width: 193, height: 110}}/>
+      </View>
+    )
+  }
+});
+
+AppRegistry.registerComponent('AwesomeProject', function() { return AwesomeProject });
